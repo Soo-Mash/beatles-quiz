@@ -17,7 +17,7 @@ export default function QuizPage() {
 
       <div className="space-y-2">
         <button className="w-full rounded border px-3 py-2 text-left hover:bg-gray-50">
-          Option 1: Album Name here
+          Option 1: Album Name
         </button>
         <button className="w-full rounded border px-3 py-2 text-left hover:bg-gray-50">
           Option 2: album Name
