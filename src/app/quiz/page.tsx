@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function QuizPage() {
+const QuizPage = () => {
   return (
     <div className="mx-auto max-w-lg p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -36,4 +36,6 @@ export default function QuizPage() {
       </div>
     </div>
   );
-}
+};
+
+export default QuizPage;

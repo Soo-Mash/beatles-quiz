@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ResultsPage() {
+const ResultsPage = () => {
   return (
     <div className="mx-auto max-w-lg p-6 space-y-6">
       <header className="text-center space-y-1">
@@ -27,4 +27,6 @@ export default function ResultsPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ResultsPage;
