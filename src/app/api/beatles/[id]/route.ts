@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-export async function GET(
+export const GET = async (
   _req: Request,
   { params }: { params: { id: string } }
-) {
+) => {
   const { id } = await params; // await 'params' to avoid console error, suggested by terminal message. Since Next v15 - find in "Dynamic APIs are Asynchronous" page in NextJs docs.
 
   const url = `https://frontend-interview.evidentinsights.com/album_covers/${id}`;
@@ -22,4 +22,4 @@ export async function GET(
       "content-type": contentType,
     },
   });
-}
+};

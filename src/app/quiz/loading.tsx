@@ -1,7 +1,9 @@
-export default function QuizLoading() {
+const QuizLoading = () => {
   return (
-    <main className="mx-auto max-w-lg p-6">
-      <p>Loading quiz question</p>
-    </main>
+    <div className="mx-auto max-w-lg p-6">
+      <p>Loading quiz question...</p>
+    </div>
   );
-}
+};
+
+export default QuizLoading;
