@@ -60,6 +60,7 @@ This isn’t meant to be a production app, but a demonstration of:
 ## Running Locally
 Clone this repo locally via the green button on top right of this page.
 When about to run the app, make sure you are on the MAIN branch! This is the latest.
+Also, of course, ensure Node v16 or later is installed on your machine.
 ```bash
 npm install
 npm run dev
