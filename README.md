@@ -29,7 +29,7 @@ Results screen with overall session stats
 
 ### Code Quality & Maintainability
 - Navigation and routing is kept very barebones, using only nextjs built-in App Router functionality
-- Followed Git branching strategies, separating additions of different features using Pull Requests in feature branches, merging into main.
+- Followed Git branching strategies, separating additions of different features using Pull Requests in feature branches, merging into main. Be sure to go to the Pull Request tab, remove 'is:unread' from the searchbar, and check out my nicely chunked PRs!
 - Used **plain helper utilities** (`storage.ts`) to abstract session storage, keeping state tracking easy to follow.  
 - **`useMemo`** ensures question sets don’t regenerate on every re-render.  
 - Components are self-contained pages under `app/`, aligned with Next.js conventions.  
