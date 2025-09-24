@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-md p-6 space-y-6">
       <header className="text-center space-y-1">
-        <h1 className="text-2xl font-semibold">Beatles Quiz & Trivia</h1>
+        <h1 className="text-2xl font-bold">Beatles Quiz & Trivia</h1>
         <p className="text-sm text-gray-600">
           Guess the album name from the cover art
         </p>
@@ -68,7 +68,7 @@ export default function Home() {
 //         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
 //           <li className="mb-2 tracking-[-.01em]">
 //             Get started by editing{" "}
-//             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
+//             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-bold px-1 py-0.5 rounded">
 //               src/app/page.tsx
 //             </code>
 //             .
