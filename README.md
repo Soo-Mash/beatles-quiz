@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beatles Quiz
 
-## Getting Started
+A lightweight quiz app built with **Next.js (App Router)** and **React**.  
+The user is shown Beatles album covers and must guess the correct album name from multiple choices. Trivia is revealed for correct answers, and stats are tracked across rounds in `sessionStorage`.
 
-First, run the development server:
 
+## Features
+- **Quiz**: 5 random questions per round (unique album covers).  
+- **Feedback**: Some cool animations, where wrong answers shake and flash red and correct answers flip to show trivia.  
+- **Trivia**: Each album has short, real snippets of Beatles history. (addmittedly chatGPT generated so don't hold these trivia pieces as truths please haha)
+- **Session stats**: Tracks total guesses, correct guesses, and rounds played across the whole session.  
+- **Persistence**: Data lives in `sessionStorage`, survives refresh, but resets on full exit.  
+- **Simple navigation**: Welcome -> Quiz -> Results, with options to play again or exit.
+
+
+Start screen with name/email input
+![welcome page gif](https://github.com/user-attachments/assets/d0e6f52e-4428-4f4c-8c05-eabb61c6e728)
+Quiz screen with album covers and options  
+![quiz questions gif](https://github.com/user-attachments/assets/2c175eb5-fc05-4d4b-b56a-bf27045e6a83)
+Results screen with overall session stats  
+![results screen gif](https://github.com/user-attachments/assets/474e0ccb-9bcf-429b-b22e-4f304b56384e)
+
+
+## Considerations
+### Features
+- Kept quiz length fixed at 5 to keep rounds snappy.  
+- Trivia shown on other side of a card flip for a small “delight” factor without heavy UI libraries.
+- Error & loading states are present but minimal since the upstream API is stable and simple.  
+
+### Code Quality & Maintainability
+- Navigation and routing is kept very barebones, using only nextjs built-in App Router functionality
+- Followed Git branching strategies, separating additions of different features using Pull Requests in feature branches, merging into main.
+- Used **plain helper utilities** (`storage.ts`) to abstract session storage, keeping state tracking easy to follow.  
+- **`useMemo`** ensures question sets don’t regenerate on every re-render.  
+- Components are self-contained pages under `app/`, aligned with Next.js conventions.  
+- Explicitly separated **album metadata**, **trivia**, and **storageHelpers** into `lib/` folder for reusability.  
+- Code comments document tradeoffs (e.g. while loops for distractors vs. more efficient shuffling).  
+
+
+## Future Improvements
+- **Round summaries**: show per-round accuracy alongside overall totals.  
+- **Client vs server**: improve use of client side vs server side files, can definitely inmprove efficiency here.
+- **Accessibility**: improve focus states & aria-live feedback for screen readers.  
+- **Styling**: replace Tailwind utility classes with a design system or component library for scalability.  
+- **Data fetching**: fetch and save album images with SWR or another similar functionality instead of proxying every time.  
+- **Unit tests**: although simple, this app could be improved with test functions, just like any repo
+
+
+
+## Learnings & Tradeoffs
+This isn’t meant to be a production app, but a demonstration of:  
+- Ability to quickly scaffold in **React & Next.js**.  
+- Awareness of state persistence and UX feedback loops.
+- Handling of Next.js data fetch proxying.
+- Conscious tradeoffs (simple `while` loops instead of trying to figure out hectic algorithms, sessionStorage VS a full reducer store, etc).  
+- Balancing **polish** (animations, trivia) with **time constraints**.
+
+
+
+## Running Locally
+Clone this repo locally via the green button on top right of this page.
+When about to run the app, make sure you are on the MAIN branch! This is the latest.
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# visit http://localhost:3000
