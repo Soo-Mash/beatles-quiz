@@ -17,11 +17,14 @@ const ResultsPage = () => {
         </p>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex items-center justify-end gap-3">
         <Link href="/" className="rounded bg-black px-4 py-2 text-white">
           Exit
         </Link>
-        <Link href="/quiz" className="rounded border px-4 py-2">
+        <Link
+          href="/quiz"
+          className="rounded bg-white px-4 py-2 font-medium text-black cursor-pointer hover:bg-gray-300 "
+        >
           Play Again
         </Link>
       </div>
