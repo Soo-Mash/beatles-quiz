@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { albumNamesHardcoded, albumTrivia } from "@/lib/albumInfo";
+import { setItem, getItem } from "@/lib/storageHelpers";
 
 const randomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
@@ -66,6 +67,9 @@ const QuizPage = () => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false); // card flipping
   const [wrongId, setWrongId] = useState<number | null>(null); // id of incorrectly chosen option so it knows which one to do shake and flash effect
 
+  const guessesMade = getItem("guessesMade") ?? 0;
+  const roundsPlayed = getItem("roundsPlayed") ?? 0;
+
   const currentQuestion = questions[currentQuestionIndex];
 
   const handleCardFlip = () => {
@@ -73,7 +77,17 @@ const QuizPage = () => {
   };
 
   const onSelect = (albumId: number) => {
-    if (albumId === currentQuestion.correctAlbumId) {
+    const isCorrect = albumId === currentQuestion.correctAlbumId;
+
+    // increment TOTAL guesses
+    const guesses = (getItem("guessesMade") ?? 0) + 1;
+    setItem("guessesMade", guesses);
+
+    if (isCorrect) {
+      // increment correct guesses
+      const corrects = (getItem("correctGuesses") ?? 0) + 1;
+      setItem("correctGuesses", corrects);
+
       setSelectedId(albumId);
       setWrongId(null);
       handleCardFlip();
@@ -92,6 +106,10 @@ const QuizPage = () => {
         setSelectedId(null);
       }, 700);
     } else {
+      // increment roundsPlayed
+      const rounds = (getItem("roundsPlayed") ?? 0) + 1;
+      setItem("roundsPlayed", rounds);
+
       setTimeout(() => {
         router.push("/results");
       }, 700);
@@ -104,7 +122,10 @@ const QuizPage = () => {
         <h1 className="text-xl font-bold">
           Question {currentQuestionIndex + 1} of {5}
         </h1>
-        <span className="text-sm text-gray-600">Guesses made: 696</span>
+        <span className="text-sm text-gray-600">
+          Round: {roundsPlayed + 1} | Guesses: {guessesMade}
+        </span>
+        <span className="text-sm text-gray-600"></span>
       </div>
 
       <div className="rounded p-4 flex items-center justify-center h-72">
@@ -170,7 +191,7 @@ const QuizPage = () => {
           disabled={selectedId == null}
           className="rounded bg-white px-4 py-2 font-medium text-black cursor-pointer hover:bg-gray-300 disabled:cursor-not-allowed"
         >
-          {currentQuestionIndex < 5 - 1 ? "Next" : "See Results"}
+          {currentQuestionIndex < 5 - 1 ? "Next" : "See stats"}
         </button>
       </div>
     </div>
