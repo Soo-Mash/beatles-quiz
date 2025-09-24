@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { albumNamesHardcoded, albumTrivia } from "@/lib/albumInfo";
@@ -69,6 +69,7 @@ const QuizPage = () => {
 
   const guessesMade = getItem("guessesMade") ?? 0;
   const roundsPlayed = getItem("roundsPlayed") ?? 0;
+  const playerName = getItem("playerName") ?? "";
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -115,6 +116,10 @@ const QuizPage = () => {
       }, 700);
     }
   };
+
+  useEffect(() => {
+    if (!playerName) router.push("/");
+  }, [playerName, router]);
 
   return (
     <div className="mx-auto max-w-lg p-6 space-y-6">

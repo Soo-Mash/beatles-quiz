@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { getItem, clearAll } from "@/lib/storageHelpers";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const ResultsPage = () => {
   const router = useRouter();
@@ -11,6 +12,10 @@ const ResultsPage = () => {
   const guessesMade = getItem("guessesMade") ?? 0;
   const correctGuesses = getItem("correctGuesses") ?? 0;
   const playerName = getItem("playerName") ?? "Player";
+
+  useEffect(() => {
+    if (!playerName) router.push("/");
+  }, [playerName, router]);
 
   return (
     <div className="mx-auto max-w-lg p-6 space-y-6">
