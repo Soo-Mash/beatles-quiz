@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { setItem } from "@/lib/storageHelpers";
 
 interface PlayerINfoForm {
   name: string;
@@ -41,15 +42,11 @@ const Home = () => {
     const playerInfo = {
       name: form.name.trim(),
       email: form.email.trim(),
-      roundsplayed: 0,
-      guessesMade: 0,
-      correctGuesses: 0,
     };
-    const playerInfoJSON = JSON.stringify(playerInfo);
-    sessionStorage.setItem("player", playerInfoJSON);
 
+    setItem("playerName", playerInfo.name);
+    setItem("playerEmail", playerInfo.email);
     console.log("playerInfo: ,", playerInfo);
-
     router.push("/quiz");
   };
 
